@@ -39,6 +39,19 @@ class Model {
       this.geometry = this.mesh.geometry
 
       /*---------------------------------
+      Particles Material
+      ---------------------------------*/
+      this.particlesMaterial = new THREE.PointsMaterial({
+        color: 'red',
+        size: 0.05
+      })
+
+      /*---------------------------------
+      Particles
+      ---------------------------------*/
+      this.particles = new THREE.Points(this.geometry, this.particlesMaterial)
+
+      /*---------------------------------
       Place on load
       ---------------------------------*/
       if (this.placeOnLoad) {
@@ -48,11 +61,11 @@ class Model {
   }
 
   add() {
-    this.scene.add(this.mesh)
+    this.scene.add(this.particles)
   }
 
   remove() {
-    this.scene.remove(this.mesh)
+    this.scene.remove(this.particles)
   }
 }
 
