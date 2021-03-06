@@ -75,6 +75,7 @@ class Model {
       const numParticles = 20000
       this.particlesGeometry = new THREE.BufferGeometry()
       const particlesPosition = new Float32Array(numParticles * 3)
+      const particlesRandomness = new Float32Array(numParticles * 3)
 
       for (let i = 0; i < numParticles; i++) {
         const newPosition = new THREE.Vector3()
@@ -84,9 +85,16 @@ class Model {
           newPosition.y,
           newPosition.z
         ], i * 3)
+
+        particlesRandomness.set([
+          Math.random() * 2 - 1, // -1 <> 1
+          Math.random() * 2 - 1,
+          Math.random() * 2 - 1
+        ], i * 3)
       }
 
-      this.particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlesPosition, 3))
+      this.particlesGeometry.setAttribute('position', new THREE.BufferAttribute(particlesPosition, 3)) // this the position variable used in the glsl shaders
+      this.particlesGeometry.setAttribute('aRandom', new THREE.BufferAttribute(particlesRandomness, 3)) // this the aRandom variable used in the glsl shaders
 
       /*---------------------------------
       Particles
