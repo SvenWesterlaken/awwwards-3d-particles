@@ -116,12 +116,19 @@ class Model {
     this.scene.add(this.particles)
     this.isActive = true
 
-    gsap.to(this.particlesMaterial.uniforms.uScale, { value: 1 })
+    gsap.to(this.particlesMaterial.uniforms.uScale, { 
+      value: 1,
+      duration: .8,
+      delay: .3,
+      ease: 'power3.out'
+    })
   }
 
   remove() {
     gsap.to(this.particlesMaterial.uniforms.uScale, { 
       value: 0,
+      duration: .8,
+      ease: 'power3.out',
       onComplete: () => {
         this.scene.remove(this.particles)
         this.isActive = false
