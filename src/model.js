@@ -12,6 +12,9 @@ class Model {
     this.scene = obj.scene
     this.placeOnLoad = obj.placeOnLoad
 
+    this.color1 = obj.colors[0]
+    this.color2 = obj.colors[1]
+
     this.loader = new GLTFLoader()
     this.dracoLoader = new DRACOLoader()
     this.dracoLoader.setDecoderPath('./draco/')
@@ -50,8 +53,8 @@ class Model {
       // })
       this.particlesMaterial = new THREE.ShaderMaterial({
         uniforms: {
-          uColor1: { value: new THREE.Color('#004af2') }, // u prefix is convention for uniform variables
-          uColor2: { value: new THREE.Color('red') }
+          uColor1: { value: new THREE.Color(this.color1) }, // u prefix is convention for uniform variables
+          uColor2: { value: new THREE.Color(this.color2) }
         },
         vertexShader: vertex,
         fragmentShader: fragment
