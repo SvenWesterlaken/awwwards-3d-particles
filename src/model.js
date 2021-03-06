@@ -49,6 +49,10 @@ class Model {
       //   size: 0.02
       // })
       this.particlesMaterial = new THREE.ShaderMaterial({
+        uniforms: {
+          uColor1: { value: new THREE.Color('#004af2') }, // u prefix is convention for uniform variables
+          uColor2: { value: new THREE.Color('red') }
+        },
         vertexShader: vertex,
         fragmentShader: fragment
       })
