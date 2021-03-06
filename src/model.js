@@ -57,7 +57,8 @@ class Model {
           uColor2: { value: new THREE.Color(this.color2) }
         },
         vertexShader: vertex,
-        fragmentShader: fragment
+        fragmentShader: fragment,
+        transparent: true
       })
 
       /*---------------------------------
