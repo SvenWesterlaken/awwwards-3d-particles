@@ -17,6 +17,7 @@ class Model {
 
     this.color1 = obj.colors[0]
     this.color2 = obj.colors[1]
+    this.background = obj.background
 
     this.loader = new GLTFLoader()
     this.dracoLoader = new DRACOLoader()
@@ -129,6 +130,11 @@ class Model {
         y: 0,
         duration: .8,
         ease: 'power3.out'
+      })
+
+      gsap.to('body', {
+        background: this.background,
+        duration: .8
       })
     }
 

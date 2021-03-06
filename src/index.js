@@ -62,6 +62,7 @@ const skull = new Model({
     'red',
     'yellow'
   ],
+  background: '#47001b',
   scene,
   placeOnLoad: true
 })
@@ -73,6 +74,7 @@ const horse = new Model({
     'blue',
     'pink'
   ],
+  background: '#110047',
   scene
 })
 
