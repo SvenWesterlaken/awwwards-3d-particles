@@ -4,7 +4,6 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 
 class Model {
   constructor (obj) {
-    // console.log(obj)
     this.name = obj.name
     this.file = obj.file
     this.scene = obj.scene
@@ -20,16 +19,28 @@ class Model {
 
   init () {
     this.loader.load(this.file, (response) => {
-      console.log(response)
-
+      /*---------------------------------
+      Original Mesh
+      ---------------------------------*/
       this.mesh = response.scene.children[0]
+
+      /*---------------------------------
+      Material Mesh
+      ---------------------------------*/
       this.material = new THREE.MeshBasicMaterial({
         color: 'red',
         wireframe: true
       })
       this.mesh.material = this.material
 
-      // Place On Load
+      /*---------------------------------
+      Geometry Mesh
+      ---------------------------------*/
+      this.geometry = this.mesh.geometry
+
+      /*---------------------------------
+      Place on load
+      ---------------------------------*/
       if (this.placeOnLoad) {
         this.add()
       }
