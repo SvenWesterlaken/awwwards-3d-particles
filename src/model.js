@@ -2,6 +2,8 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import { MeshSurfaceSampler } from 'three/examples/jsm/math/MeshSurfaceSampler'
+import vertex from './shaders/vertexShader.glsl'
+import fragment from './shaders/fragmentShader.glsl'
 
 class Model {
   constructor (obj) {
@@ -42,9 +44,13 @@ class Model {
       /*---------------------------------
       Particles Material
       ---------------------------------*/
-      this.particlesMaterial = new THREE.PointsMaterial({
-        color: 'red',
-        size: 0.02
+      // this.particlesMaterial = new THREE.PointsMaterial({
+      //   color: 'red',
+      //   size: 0.02
+      // })
+      this.particlesMaterial = new THREE.ShaderMaterial({
+        vertexShader: vertex,
+        fragmentShader: fragment
       })
 
       /*---------------------------------
