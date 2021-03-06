@@ -114,7 +114,6 @@ class Model {
 
   add() {
     this.scene.add(this.particles)
-    this.isActive = true
 
     gsap.to(this.particlesMaterial.uniforms.uScale, { 
       value: 1,
@@ -122,6 +121,18 @@ class Model {
       delay: .3,
       ease: 'power3.out'
     })
+
+    if (!this.isActive) {
+      gsap.fromTo(this.particles.rotation, {
+        y: Math.PI // 180 degrees
+      }, {
+        y: 0,
+        duration: .8,
+        ease: 'power3.out'
+      })
+    }
+
+    this.isActive = true
   }
 
   remove() {
@@ -133,6 +144,12 @@ class Model {
         this.scene.remove(this.particles)
         this.isActive = false
       }
+    })
+
+    gsap.to(this.particles.rotation, {
+      y: Math.PI,
+      duration: .8,
+      ease: 'power3.out'
     })
   }
 }
