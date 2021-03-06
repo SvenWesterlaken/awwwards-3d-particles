@@ -92,11 +92,25 @@ buttons[1].addEventListener('click', () => {
 })
 
 /*------------------------------
+Clock
+------------------------------*/
+const clock = new THREE.Clock()
+
+/*------------------------------
 Loop
 ------------------------------*/
 const animate = function () {
   requestAnimationFrame( animate );
   renderer.render( scene, camera );
+
+  if (skull.isActive) {
+    skull.particlesMaterial.uniforms.uTime.value = clock.getElapsedTime();
+  }
+
+  if (horse.isActive) {
+    horse.particlesMaterial.uniforms.uTime.value = clock.getElapsedTime();
+  }
+  
 };
 animate();
 

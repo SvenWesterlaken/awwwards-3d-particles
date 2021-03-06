@@ -12,6 +12,8 @@ class Model {
     this.scene = obj.scene
     this.placeOnLoad = obj.placeOnLoad
 
+    this.isActive = false
+
     this.color1 = obj.colors[0]
     this.color2 = obj.colors[1]
 
@@ -51,10 +53,12 @@ class Model {
       //   color: 'red',
       //   size: 0.02
       // })
+
       this.particlesMaterial = new THREE.ShaderMaterial({
         uniforms: {
           uColor1: { value: new THREE.Color(this.color1) }, // u prefix is convention for uniform variables
-          uColor2: { value: new THREE.Color(this.color2) }
+          uColor2: { value: new THREE.Color(this.color2) },
+          uTime: { value: 0 }
         },
         vertexShader: vertex,
         fragmentShader: fragment,
@@ -100,10 +104,12 @@ class Model {
 
   add() {
     this.scene.add(this.particles)
+    this.isActive = true
   }
 
   remove() {
     this.scene.remove(this.particles)
+    this.isActive = false
   }
 }
 
