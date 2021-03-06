@@ -5,10 +5,11 @@ varying vec3 vPosition;
 
 // position is kind of a default for glsl so doesn't have a prefix and 
 // doesn't need a attribute assigned (this is already done by ThreeJS).
-// However, extra values should be prefixed with an 'a' by convention.
+// However, custom values should be prefixed with an 'a' by convention.
 attribute vec3 aRandom;
 
-uniform float uTime;
+uniform float uTime; // u prefix by convention
+uniform float uScale;
 
 void main() {
   vPosition = position; // position is a variable automatically set by ThreeJS
@@ -19,6 +20,8 @@ void main() {
   pos.x += sin(time * aRandom.x) * 0.01;
   pos.y += cos(time * aRandom.y) * 0.01;
   pos.z += cos(time * aRandom.z) * 0.01;
+
+  pos *= uScale;
 
   vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
   gl_Position = projectionMatrix * mvPosition;
